@@ -10,7 +10,7 @@ import numpy as np
 import sklearn
 import joblib
 from sklearn.preprocessing import StandardScaler
-
+import xgboost as xgb
 
 # In[3]:
 
@@ -80,15 +80,16 @@ def build_model(score_data):
                         'marital_status_unknown', 'marital_status_widower',
                         'profession_type_employed', 'profession_type_independant',
                         'profession_type_unemployed', 'profession_type_unknown', 'country_id_1',
-                        'country_id_2', 'country_id_3', 'credit_score_scaled']]
+                        'country_id_2', 'country_id_3', 'credit_score_scaled']].values
     
     # Load the model from the file
-    model_from_joblib = joblib.load('default_class_model.pkl')
+    model_xgb_2 = xgb.Booster()
+    model_xgb_2.load_model(default_class_model.json')
 
     # Use the loaded model to make predictions
-    scoring = model_from_joblib.predict(X_test)
+    scoring = model_xgb_2.predict(xgb.DMatrix(X_test))
     
-    probability_scoring = pd.DataFrame(model_from_joblib.predict_proba(X_test)[:,1]).set_axis(['prob_score'], axis=1)
+    probability_scoring = pd.DataFrame(scoring).set_axis(['prob_score'], axis=1)
     probability_scoring["default_pred"]=np.where(probability_scoring["prob_score"]>.2,1,0)
     #merge data on customer scores
     scored_data = pd.merge(score_data[['customer_id']], probability_scoring,left_index=True, right_index=True)
