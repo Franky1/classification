@@ -84,7 +84,7 @@ def build_model(score_data):
     
     # Load the model from the file
     model_xgb_2 = xgb.Booster()
-    model_xgb_2.load_model(default_class_model.json')
+    model_xgb_2.load_model('default_class_model.json')
 
     # Use the loaded model to make predictions
     scoring = model_xgb_2.predict(xgb.DMatrix(X_test))
