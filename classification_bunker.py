@@ -158,11 +158,13 @@ def build_model(score_data):
 st.write("""
 # Modelo predictivo de clasificación de default
 
-En esta aplicación, se debe subir un CSV con las variables:
+En esta aplicación se debe subir un CSV con las variables:
 
 customer_id, gender, age, marital_status, profession_type, salary, country_id, credit_score
 
-se utilizará como input. El output tendrá la siguientes variables:
+Advertencia: las variables se deben llamar de esta misma forma y los campos de "age" y "salario" no pueden ser nulos o datos invalidos (e.g. 200 años)
+
+El output tendrá la siguientes variables:
 
 customer_id
 
