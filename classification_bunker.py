@@ -21,19 +21,6 @@ from sklearn.preprocessing import StandardScaler
 st.set_page_config(page_title='Modelo predictivo de defaults',
     layout='wide')
 
-
-# In[7]:
-
-
-customer_extract = pd.read_csv(r"C:\Users\marce\OneDrive\Freelancing\Bunker360\customer_extract.csv")
-
-
-# In[8]:
-
-
-customer_extract
-
-
 # In[12]:
 
 
