@@ -83,7 +83,7 @@ def build_model(score_data):
                         'country_id_2', 'country_id_3', 'credit_score_scaled']]
     
     # Load the model from the file
-    model_from_joblib = joblib.load('C:\\Users\marce\classification_bunker\default_class_model.bin')
+    model_from_joblib = joblib.load('default_class_model.pkl')
 
     # Use the loaded model to make predictions
     scoring = model_from_joblib.predict(X_test)
