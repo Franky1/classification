@@ -89,7 +89,7 @@ def build_model(score_data):
     
     mLink = 'https://github.com/marcebejarano/classification/blob/main/default_class_model.pkl'
     mfile = BytesIO(requests.get(mLink).content)
-    model_from_joblib = joblib.load(my_file)
+    model_from_joblib = joblib.load(mfile)
 
     # Use the loaded model to make predictions
     
