@@ -11,6 +11,8 @@ import sklearn
 import joblib
 from sklearn.preprocessing import StandardScaler
 import xgboost as xgb
+import requests
+import pickle
 
 # In[3]:
 
@@ -83,11 +85,14 @@ def build_model(score_data):
                         'country_id_2', 'country_id_3', 'credit_score_scaled']].values
     
     # Load the model from the file
-    model_xgb_2 = xgb.Booster()
-    model_xgb_2.load_model('default_class_model.json')
+    
+    mLink = 'https://github.com/marcebejarano/classification/blob/main/default_class_model.pkl'
+    mfile = BytesIO(requests.get(mLink).content)
+    model_from_joblib = joblib.load(my_file)
 
     # Use the loaded model to make predictions
-    scoring = model_xgb_2.predict(xgb.DMatrix(X_test))
+    
+    scoring = model_from_joblib.predict(X_test)
     
     probability_scoring = pd.DataFrame(scoring).set_axis(['prob_score'], axis=1)
     probability_scoring["default_pred"]=np.where(probability_scoring["prob_score"]>.2,1,0)
