@@ -13,6 +13,7 @@ from sklearn.preprocessing import StandardScaler
 import xgboost as xgb
 import requests
 import pickle
+from io import BytesIO
 
 # In[3]:
 
