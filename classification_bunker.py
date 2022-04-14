@@ -86,10 +86,11 @@ def build_model(score_data):
                         'country_id_2', 'country_id_3', 'credit_score_scaled']].values
     
     # Load the model from the file
+    model_from_joblib = joblib.load('default_class_model.pkl')
     
-    mLink = 'https://github.com/marcebejarano/classification/blob/main/default_class_model.pkl'
-    mfile = BytesIO(requests.get(mLink).content)
-    model_from_joblib = joblib.load(mfile)
+#     mLink = 'https://github.com/marcebejarano/classification/blob/main/default_class_model.pkl'
+#     mfile = BytesIO(requests.get(mLink).content)
+#     model_from_joblib = joblib.load(mfile)
 
     # Use the loaded model to make predictions
     
